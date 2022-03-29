@@ -1,38 +1,66 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.container {
+  max-width: 30rem;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  min-height: 100vh;
+  margin-inline: auto;
+}
+
+.loading {
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.card {
+  background-color: var(--bg-secondary);
+  text-align: center;
+  max-width: 93%;
+  padding: 1.5rem;
+  border-radius: 0.75rem;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.card-heading {
+  letter-spacing: 3px;
+  color: var(--text-secondary);
+  margin-block: 2em;
+  text-transform: uppercase;
+  font-size: 0.67rem;
+}
+
+.advice {
+  font-size: 1.5rem;
+  color: var(--text-primary);
+  font-weight: 800;
+  margin-bottom: 1.3em;
+}
+
+.advice::before {
+  content: "\201C";
+}
+
+.advice::after {
+  content: "\201D";
+}
+
+.divider {
+  display: flex;
+  justify-content: center;
+}
+
+button {
+  margin: -1rem;
+  width: 4rem;
+  height: 4rem;
+  border-radius: 300px;
+  border: 0;
+  background-color: var(--text-secondary);
+  display: grid;
+  margin-inline: auto;
+  transform: translateY(60%);
+  place-items: center;
+  cursor: pointer;
+}
+
+button:hover {
+  box-shadow: 0 0 2rem var(--text-secondary);
 }

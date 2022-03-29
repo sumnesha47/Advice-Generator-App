@@ -1,24 +1,42 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState, useEffect } from "react";
+import "./App.css";
+import AdviceCard from "./components/AdviceCard";
+import Loading from "./components/Loading";
+
+const url = "https://api.adviceslip.com/advice";
 
 function App() {
+  const [loading, setLoading] = useState(true);
+  const [advice, setAdvice] = useState({ slip: { id: 0, advice: "hello" } });
+  const fetchAdvice = async () => {
+    setLoading(true);
+
+    try {
+      const response = await fetch(url);
+      const data = await response.json();
+      setLoading(false);
+      setAdvice(data);
+    } catch (error) {
+      setLoading(false);
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    fetchAdvice();
+  }, []);
+
+  if (loading) {
+    return (
+      <main className="container">
+        <Loading />
+      </main>
+    );
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <main className="container">
+      <AdviceCard advice={advice.slip} handleClick={fetchAdvice} />
+    </main>
   );
 }
 
